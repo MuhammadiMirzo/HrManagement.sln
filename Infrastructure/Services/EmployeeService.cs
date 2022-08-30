@@ -17,9 +17,9 @@ public void Update(Employee employee, int id)
     search.FirstName = employee.FirstName;
     search.LastName = employee.LastName;
     search.BirthDate = employee.BirthDate;
-    search.Adress = employee.Adress;
+    search.Address = employee.Address;
     search.Department = employee.Department;
-    search.Experience = employee.Experience;
+    search.Experiences = employee.Experiences;
     search.Roles = employee.Roles;
     search.Phone = employee.Phone; 
 } 
@@ -32,7 +32,7 @@ public List<Role> GetRolesByEmployeeId(int id)
 public List<Experience> GetExperiencesByEmployeeId(int id)
 {
     var search = employees.Find(x=>x.Id==id);
-    return search.Experience;
+    return search.Experiences;
 }
 
  public Employee GetEmployeeById(int id)

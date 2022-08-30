@@ -1,96 +1,92 @@
 ﻿using Domain.Models;
-using Infrastructure.Services;
-var emp = new EmployeeService();
-var department1 = new Department(){
-    Id = 1,
-    Name = "IT"
-};
-var department2 = new Department(){
-    Id = 2,
-    Name = "HR"
-};
-var department3 = new Department(){
-    Id = 3,
-    Name = "Accounting"
-};
-var experience1 = new Experience(){
-    Id = 1,     
-    Company = "Alif",
+var it = new Department() { Id = 1, Name = "IT" };
+var hr = new Department() { Id = 2, Name = "HR" };
+var finance = new Department() { Id = 3, Name = "Finance" };
 
-};
-var experience2 = new Experience(){
-    Id = 2,  
-    Company = "Mohir",
+var role1 = new Role(){ Id = 1, Name = "Admin" };
+var role2 = new Role(){ Id = 2, Name = "User" };
+var role3 = new Role(){ Id = 3, Name = "Guest" };
 
-};
-var role1 = new  Role(){
-    Id = 1,
-    Name = "user"
-};
-var role2 = new  Role(){
-    Id = 1,
-    Name = "it"
-};
-var emplyees = new List<Employee>();   // list of employees
-var em1 = new Employee()               // first employee
-{
-    FirstName = "Nurullo",
-    LastName = "Sulaymonov",
-    Department = department1,
-    Experience = {experience1,experience2},
-    Roles = {role2,role1}
-};
-emplyees.Add(em1);                    // adding first employee to list of employees
+var listofEmp = new List<Employee>();
 
-var em2 = new Employee()             // second employee
-{
-    FirstName = "Azim",
-    LastName = "Aymonov",
-    // Department = department2,
-    // Experience = {experience2,experience1},
-    // Roles  = {role1,role2}
+var emp1 =new Employee()
+{ 
+    Id = 1, 
+    FirstName = "John", 
+    LastName = "Doe", 
+    Department = it, 
+    Address = "123 Main St", 
+    Phone = "555-555-5555",
+    BirthDate = new DateTime(1980, 1, 1),
+    Experiences =  new List<Experience>()
+    {
+        new Experience(){
+            Id = 1,
+            Company = "ABC",
+            Name = "Developer",
+            Description = "As a programmer",
+            EmployeeId = 1
+        },
+        new Experience(){
+            Id = 1,
+            Company = "ABCd",
+            Name = "Developer",
+            Description = "As a programmer",
+            EmployeeId = 1
+        }
+    },
+    Roles = new List<Role>(){role1,role2}
 };
-emplyees.Add(em2);                    // adding second employee to the list of employees
+listofEmp.Add(emp1);
 
-var em3 = new Employee()              // third employee
-{
-    FirstName = "Saif",
-    LastName = "Fayzov",
-    Department = department1,
-    // Experience = {experience1,experience2},
-    // Roles = {role2,role1}
+var emp2 =new Employee()
+{ 
+    Id = 1, 
+    FirstName = "Jahonzeb", 
+    LastName = "Jahongizoda", 
+    Department = finance, 
+    Address = "123 Main St", 
+    Phone = "555-555-5555",
+    BirthDate = new DateTime(1980, 1, 1),
+    Experiences =  new List<Experience>()
+    {
+        new Experience(){
+            Id = 1,
+            Company = "ABC",
+            Name = "Developer",
+            Description = "As a programmer",
+            EmployeeId = 1
+        },
+        new Experience(){
+            Id = 1,
+            Company = "ABCd",
+            Name = "Developer",
+            Description = "As a programmer",
+            EmployeeId = 1
+        }
+    },
+    Roles = new List<Role>(){role2,role3}
 };
-emplyees.Add(em3);                  // adding third employee to list of employees
+listofEmp.Add(emp2);
 
-var em4 = new Employee()            // fourth employee
+foreach (var emp in listofEmp)
 {
-    FirstName = "Ali",
-    LastName = "Girov",
-    Department = new Department(),
-    // Experience = {experience2,experience1},
-    // Roles = {role1,role2,role1}
-};
-emplyees.Add(em4);                  //adding 4th employee to list
-
-var  em5 = new Employee()            // 5th employee 
-{
-    FirstName = "Hirot",
-    LastName = "Donov",
-    Department = department1,
-};
-emplyees.Add(em5);                    // adding 5th employee to list
-foreach (var item in emplyees)
-{
-    var dep = item.Department;
+    Console.WriteLine(new string('*', 50));
+    Console.WriteLine($"{emp.FirstName} {emp.LastName}");
+    Console.WriteLine($"{emp.Department.Name}");
+    Console.Write("Experiences: ");
+    foreach (var exp in emp.Experiences)
+    {
+        Console.Write($"{exp.Name},");
+    }
+    Console.WriteLine();
+    Console.Write("Roles: ");
+    foreach (var role in emp.Roles)
+    {
+        Console.Write($"{role.Name},");
+    }
+    Console.WriteLine();
 }
-foreach (var item in emplyees)
-{
-    System.Console.WriteLine(item.FirstName+" "+item.LastName+" "+);
-}
-
-
-
-
 // Create 5 Employees, each employee should have 2 roles (user, hr, it, accounting). Each
 // Employee should have department. Employees should have at least 2 experiences.
 // Using foreach print Every Employee
